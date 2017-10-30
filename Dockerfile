@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-MAINTAINER Rick Burgess <nodefortytwo@gmail.com>
+MAINTAINER Rick Burgess <opensource@rickburgess.me>
 
 RUN DEBIAN_FRONTEND=noninteractive
 # Install "software-properties-common" (for the "add-apt-repository")
