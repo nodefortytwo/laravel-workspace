@@ -20,7 +20,7 @@ RUN add-apt-repository -y \
     ppa:ondrej/php
 
 # Install PHP-CLI 7, some PHP extentions and some useful Tools with APT
-RUN apt-get update && apt-get install -y --force-yes \
+RUN apt-get update && apt-get install -y \
         php7.1-cli \
         php7.1-common \
         php7.1-curl \
@@ -54,7 +54,8 @@ RUN apt-get update && apt-get install -y --force-yes \
         nano \
         net-tools \
         pkg-config \
-        iputils-ping
+        iputils-ping \
+        ruby-dev
 
 # remove load xdebug extension (only load on phpunit command)
 RUN sed -i 's/^/;/g' /etc/php/7.1/cli/conf.d/20-xdebug.ini
