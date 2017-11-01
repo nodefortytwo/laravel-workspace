@@ -60,7 +60,7 @@ RUN apt-get update && apt-get install -y \
         libyaml-dev
 
 RUN pecl install yaml
-RUN echo "extension=yaml.so" >> /etc/php/7.1/cli/20-yaml.ini
+RUN echo "extension=yaml.so" >> /etc/php/7.1/cli/conf.d/20-yaml.ini
 
 # remove load xdebug extension (only load on phpunit command)
 RUN sed -i 's/^/;/g' /etc/php/7.1/cli/conf.d/20-xdebug.ini
