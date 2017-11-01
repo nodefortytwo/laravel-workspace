@@ -25,7 +25,6 @@ RUN apt-get update && apt-get install -y \
         php7.1-common \
         php7.1-curl \
         php7.1-json \
-        php7.1-yaml \
         php7.1-xml \
         php7.1-mbstring \
         php7.1-mcrypt \
@@ -56,7 +55,12 @@ RUN apt-get update && apt-get install -y \
         net-tools \
         pkg-config \
         iputils-ping \
-        ruby-dev
+        ruby-dev \
+        php-pear \
+        libyaml-dev
+
+RUN pecl install yaml
+RUN echo "extension=yaml.so" >> /etc/php/7.1/cli/20-yaml.ini
 
 # remove load xdebug extension (only load on phpunit command)
 RUN sed -i 's/^/;/g' /etc/php/7.1/cli/conf.d/20-xdebug.ini
@@ -66,6 +70,9 @@ RUN echo "export PATH=${PATH}:/var/www/laravel/vendor/bin:/root/.composer/vendor
 
 # Load xdebug Zend extension with phpunit command
 RUN echo "alias phpunit='php -dzend_extension=xdebug.so /var/www/laravel/vendor/bin/phpunit'" >> ~/.bashrc
+
+
+
 
 # Install Nodejs
 RUN curl -sL https://deb.nodesource.com/setup_7.x | bash - \
